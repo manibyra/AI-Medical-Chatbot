@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🩺 AI Medical Diagnostic Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="chat-container">
+        <h2>🩺 AI Medical Chatbot</h2>
+        <div id="chat-box">
+            <div class="bot-msg">Hi! I'm Dr. Bot. Please tell your name .</div>
+        </div>
+
+        <div class="input-area">
+            <input type="text" id="user-input" placeholder="Type your symptoms here...">
+            <input type="hidden" id="mode" value="initial">
+            <button onclick="sendMessage()">Send</button>
+            <button onclick="startVoice()">🎤</button>
+            <button onclick="restartSession()">🔄 Restart</button>
+        </div>
+    </div>
+
+    <script>
+        function addMessage(sender, message) {
+            const box = document.getElementById("chat-box");
+            const msgDiv = document.createElement("div");
+            msgDiv.className = sender + "-msg";
+            msgDiv.innerText = message;
+            box.appendChild(msgDiv);
+            box.scrollTop = box.scrollHeight;
+        }
+
+        function sendMessage() {
+            const input = document.getElementById("user-input");
+            const msg = input.value.trim();
+            if (msg === "") return;
+
+            addMessage("user", msg);
+            input.value = "";
+
+            // Check restart
+            if (msg.toLowerCase().includes("restart")) {
+                restartSession();
+                return;
+            }
+
+            const mode = document.getElementById("mode").value;
+            const url = mode === "followup" ? "/followup" : "/get_response";
+
+            fetch(url, {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: "user_input=" + encodeURIComponent(msg)
+            })
+            .then(res => res.json())
+            .then(data => {
+                addMessage("bot", data.reply);
+
+                // Update mode only after the reply is received
+                if (data.reply.startsWith("❓")) {
+                    document.getElementById("mode").value = "followup";
+                }
+
+                if (
+                    data.reply.includes("Diagnosis Confirmed") ||
+                    data.reply.includes("Please consult a doctor") ||
+                    data.reply.includes("Less than 3 symptoms")
+                ) {
+                    document.getElementById("mode").value = "initial";
+                }
+            });
+        }
+
+
+        function restartSession() {
+            fetch("/", { method: "GET" }).then(() => {
+                document.getElementById("chat-box").innerHTML =
+                    `<div class="bot-msg">🔄 Restarted.I'm Dr. Bot, Please tell your name .</div>`;
+                document.getElementById("mode").value = "initial";
+            });
+        }
+
+        function startVoice() {
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = 'en-US';
+            recognition.onresult = function (event) {
+                const spokenText = event.results[0][0].transcript;
+                document.getElementById("user-input").value = spokenText;
+                setTimeout(sendMessage, 100);  // slight delay ensures mode is read correctly
+            };
+            recognition.start();
+        }
+
+    </script>
+
+</body>
+</html>

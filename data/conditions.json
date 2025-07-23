@@ -1,0 +1,421 @@
+[
+  {
+    "name": "Fever",
+    "symptoms": ["fever", "chills", "sweating", "body aches", "fatigue"],
+    "questions": [
+      "Is your body temperature above 100°F (38°C)?",
+      "Do you feel chills or shivering?",
+      "Are you sweating excessively?",
+      "Do you have general body aches or weakness?"
+    ],
+    "advice": "Stay hydrated, rest well, and monitor your temperature regularly. If the fever persists for more than 3 days, consult a doctor.",
+    "medicines": "Paracetamol, Ibuprofen (only if prescribed).",
+    "specialist": "General Physician"
+  },
+  {
+  "name": "Common Cold and Cough", 
+    "symptoms": ["sneezing", "runny nose", "cold","sore throat", "fever","mild fever", "cough"],
+    "questions": [
+      "Do you have a runny or blocked nose?",
+      "Have you lost your sense of taste or smell?",
+      "Are you experiencing a sore throat?",
+      "Do you have a mild fever?",
+      "Are you sneezing frequently?"
+    ],
+    "advice": "Rest, drink warm fluids, use saline nasal spray, and avoid cold air.",
+    "medicines": "Paracetamol, Cough Syrup, Antihistamines (e.g., Cetirizine).",
+    "specialist": "General Physician"
+  },
+  {
+  "name": "Influenza (Flu)",
+    "symptoms": ["high fever", "body aches", "chills", "fatigue", "dry cough"],
+    "questions": [
+      "Is your fever above 100°F (38°C)?",
+      "Do you have muscle aches or chills?",
+      "Are you feeling very weak or fatigued?",
+      "Are you coughing frequently without mucus?"
+    ],
+    "advice": "Stay home, rest well, drink fluids, and monitor temperature regularly.",
+    "medicines": "Paracetamol, Ibuprofen, Antiviral drugs (Tamiflu if prescribed).",
+    "specialist": "General Physician"
+  },
+  {
+  "name": "COVID-19",
+    "symptoms": ["fever", "dry cough", "loss of taste", "loss of smell", "shortness of breath"],
+    "questions": [
+      "Do you have a persistent dry cough?",
+      "Have you lost your sense of taste or smell?",
+      "Are you feeling breathless or having difficulty breathing?",
+      "Have you recently been in contact with a COVID-positive person?"
+    ],
+    "advice": "Isolate, monitor oxygen levels, stay hydrated, and consult a doctor.",
+    "medicines": "Paracetamol, Zinc, Vitamin C, prescribed antiviral or antibiotics.",
+    "specialist": "Infectious Disease Specialist"
+  },
+  {
+  "name": "Throat Infection",
+    "symptoms": ["sore throat", "pain while swallowing", "swollen tonsils", "fever", "red throat"],
+    "questions": [
+      "Is it painful to swallow?",
+      "Are your tonsils swollen or red?",
+      "Do you see any white patches on your throat?",
+      "Do you have a fever?"
+    ],
+    "advice": "Gargle with salt water, avoid spicy foods, stay hydrated.",
+    "medicines": "Paracetamol, Lozenges, Antibiotics (if bacterial).",
+    "specialist": "ENT Specialist"
+  },
+  {
+  "name": "Gastritis",
+    "symptoms": ["stomach pain", "nausea", "bloating", "acid reflux", "loss of appetite"],
+    "questions": [
+      "Are you feeling a burning sensation in the stomach?",
+      "Do you feel bloated after meals?",
+      "Do you often burp or feel acidic?",
+      "Are you experiencing nausea or vomiting?"
+    ],
+    "advice": "Eat bland food, avoid spicy/oily food, don’t lie down after eating.",
+    "medicines": "Antacids, Pantoprazole, Domperidone.",
+    "specialist": "Gastroenterologist"
+  },
+  {
+  "name": "Constipation",
+    "symptoms": ["hard stools", "infrequent bowel movements", "bloating", "abdominal discomfort"],
+    "questions": [
+      "Have you had difficulty passing stools?",
+      "Do you feel bloated or have gas?",
+      "How many days since your last normal bowel movement?",
+      "Do you eat fiber-rich food regularly?"
+    ],
+    "advice": "Increase fiber and fluid intake, exercise regularly.",
+    "medicines": "Lactulose, Isabgol (Psyllium Husk), Stool softeners.",
+    "specialist": "Gastroenterologist"
+  },
+  {
+  "name": "Asthma",
+    "symptoms": ["shortness of breath", "wheezing", "chest tightness", "coughing (especially at night)","cough"],
+    "questions": [
+      "Do you often feel short of breath or wheeze while breathing?",
+      "Does your chest feel tight, especially during physical activity?",
+      "Do you have a history of asthma or allergies?",
+      "Do you cough frequently at night or early morning?"
+    ],
+    "advice": "Avoid allergens, use inhalers regularly, and follow asthma action plan.",
+    "medicines": "Salbutamol Inhaler, Steroid Inhalers (e.g., Budesonide).",
+    "specialist": "Pulmonologist"
+  },
+  {
+  "name": "Anxiety",
+    "symptoms": ["excessive worry", "restlessness", "rapid heartbeat", "sweating", "trouble sleeping"],
+    "questions": [
+      "Do you frequently feel nervous or anxious without a clear reason?",
+      "Are you having trouble sleeping or relaxing?",
+      "Do you experience rapid heartbeat or sweating during stressful situations?",
+      "Is it affecting your daily life or routine?"
+    ],
+    "advice": "Practice deep breathing, mindfulness, and avoid caffeine and screens before bed.",
+    "medicines": "Low-dose benzodiazepines (if prescribed), SSRIs, natural calming supplements.",
+    "specialist": "Psychiatrist / Psychologist"
+  },
+  {
+  "name": "Back Pain",
+    "symptoms": ["lower back pain", "stiffness", "pain after lifting", "limited movement"],
+    "questions": [
+      "Is the pain located in your lower or upper back?",
+      "Did the pain start after lifting or bending?",
+      "Does it get worse after prolonged sitting or standing?",
+      "Do you feel numbness or tingling in your legs?"
+    ],
+    "advice": "Maintain posture, avoid heavy lifting, apply warm compress.",
+    "medicines": "Ibuprofen, Muscle Relaxants, Physiotherapy.",
+    "specialist": "Orthopedic Specialist"
+  },
+  {
+  "name": "Urinary Tract Infection (UTI)",
+    "symptoms": ["burning during urination", "frequent urge to urinate", "lower abdominal pain", "cloudy urine"],
+    "questions": [
+      "Do you feel a burning sensation while urinating?",
+      "Are you needing to urinate very frequently?",
+      "Do you feel pressure or pain in the lower abdomen?",
+      "Is your urine cloudy or foul-smelling?"
+    ],
+    "advice": "Drink plenty of water, avoid holding urine for long, maintain hygiene.",
+    "medicines": "Ciprofloxacin, Nitrofurantoin (prescribed).",
+    "specialist": "Urologist"
+  },
+  {
+  "name": "Hypertension (High BP)",
+    "symptoms": ["headache", "dizziness", "blurred vision", "chest discomfort"],
+    "questions": [
+      "Has your blood pressure been measured recently?",
+      "Do you often feel dizzy or light-headed?",
+      "Are you experiencing frequent headaches?",
+      "Do you feel any discomfort in your chest or neck area?"
+    ],
+    "advice": "Reduce salt intake, exercise regularly, avoid stress.",
+    "medicines": "Amlodipine, Losartan, Hydrochlorothiazide (prescribed).",
+    "specialist": "Cardiologist"
+  },
+  {
+  "name": "Diabetes",
+    "symptoms": ["frequent urination", "excessive thirst", "unexplained weight loss", "fatigue", "blurred vision"],
+    "questions": [
+      "Do you often feel excessively thirsty or hungry?",
+      "Are you urinating more frequently than usual?",
+      "Have you noticed sudden weight loss without dieting?",
+      "Do you feel tired or weak frequently?"
+    ],
+    "advice": "Monitor blood sugar regularly, eat low-carb meals, exercise daily.",
+    "medicines": "Metformin, Insulin (if prescribed).",
+    "specialist": "Endocrinologist"
+  },
+  {
+  "name": "Depression",
+    "symptoms": ["persistent sadness", "loss of interest", "fatigue", "sleep disturbance", "feelings of worthlessness"],
+    "questions": [
+      "Have you been feeling sad or hopeless most of the day?",
+      "Have you lost interest in activities you used to enjoy?",
+      "Do you have trouble sleeping or oversleeping?",
+      "Have you experienced thoughts of self-harm or worthlessness?"
+    ],
+    "advice": "Talk to someone you trust, follow a routine, get sunlight exposure.",
+    "medicines": "SSRIs (e.g., Fluoxetine), counseling, CBT (as prescribed).",
+    "specialist": "Psychiatrist / Psychologist"
+  },
+
+  {
+  "name": "Typhoid",
+    "symptoms": ["prolonged fever", "abdominal pain", "weakness", "loss of appetite", "constipation or diarrhea"],
+    "questions": [
+      "Have you had a persistent fever for more than 3 days?",
+      "Are you experiencing abdominal pain or discomfort?",
+      "Do you feel extremely weak or tired?",
+      "Are you having irregular bowel movements?"
+    ],
+    "advice": "Eat light, soft food; drink boiled water; take complete rest.",
+    "medicines": "Cefixime, Azithromycin (prescribed).",
+    "specialist": "General Physician"
+  },
+  {
+  "name": "Chickenpox",
+    "symptoms": ["itchy blisters", "mild fever", "fatigue", "rash spreading across body"],
+    "questions": [
+      "Do you have itchy red spots or fluid-filled blisters on your body?",
+      "Did you have a mild fever before the rash appeared?",
+      "Are the blisters spreading to arms, legs, and face?",
+      "Have you been in contact with anyone recently infected?"
+    ],
+    "advice": "Isolate until scabs form, avoid scratching, and rest.",
+    "medicines": "Calamine lotion, Paracetamol, Acyclovir (if severe).",
+    "specialist": "General Physician / Dermatologist"
+  },
+  {
+  "name": "Acidity (GERD)",
+    "symptoms": ["burning sensation in chest", "acid reflux", "bloating", "belching", "sore throat"],
+    "questions": [
+      "Do you feel a burning sensation in your chest, especially after meals?",
+      "Do you often burp or have a sour taste in your mouth?",
+      "Is the discomfort worse when lying down or at night?",
+      "Do you feel bloated after eating?"
+    ],
+    "advice": "Avoid spicy/oily food, eat small meals, don’t lie down immediately after eating.",
+    "medicines": "Antacids, Omeprazole, Ranitidine (prescribed).",
+    "specialist": "Gastroenterologist"
+  },
+  {
+  "name": "Ear Infection",
+    "symptoms": ["ear pain", "hearing difficulty", "fluid discharge", "fever", "ear fullness"],
+    "questions": [
+      "Do you have pain or discomfort in your ear?",
+      "Is there any discharge or fluid coming out of your ear?",
+      "Are you having trouble hearing properly?",
+      "Do you have a fever or feel pressure in your ear?"
+    ],
+    "advice": "Keep the ear dry, avoid inserting anything, and consult a doctor if fever persists.",
+    "medicines": "Antibiotic ear drops, Paracetamol, Antihistamines.",
+    "specialist": "ENT Specialist"
+  },
+  {
+  "name": "Menstrual Cramps",
+    "symptoms": ["lower abdominal pain", "cramping", "back pain", "nausea", "fatigue"],
+    "questions": [
+      "Are you currently menstruating or expecting your period?",
+      "Do you feel pain or cramping in your lower abdomen?",
+      "Is the pain radiating to your lower back or thighs?",
+      "Are you also feeling tired, nauseous, or bloated?"
+    ],
+    "advice": "Use a hot water bag, stay hydrated, and rest. Gentle exercise may help.",
+    "medicines": "Ibuprofen, Mefenamic acid (as prescribed).",
+    "specialist": "Gynecologist"
+  },
+  {
+  "name": "Toothache",
+    "symptoms": ["sharp pain in tooth", "swelling", "sensitivity to hot/cold", "bleeding gums"],
+    "questions": [
+      "Do you feel sharp pain in any particular tooth?",
+      "Is the tooth sensitive to hot or cold items?",
+      "Do your gums bleed while brushing?",
+      "Is there any swelling or visible cavity?"
+    ],
+    "advice": "Avoid hard foods, rinse with warm salt water, maintain oral hygiene.",
+    "medicines": "Paracetamol, Clove oil (temporary relief).",
+    "specialist": "Dentist"
+  },
+  {
+  "name": "Allergic Rhinitis",
+    "symptoms": ["sneezing", "runny nose", "itchy eyes", "nasal congestion", "post-nasal drip"],
+    "questions": [
+      "Do you sneeze frequently, especially in the morning?",
+      "Are your eyes itchy, watery, or red?",
+      "Do you have a runny or blocked nose?",
+      "Is your throat irritated due to dripping mucus?"
+    ],
+    "advice": "Avoid allergens like dust/pollen, use air filters, and wash face after going outside.",
+    "medicines": "Antihistamines (e.g., Cetirizine), Nasal sprays.",
+    "specialist": "Allergist / ENT Specialist"
+  },
+  {
+  "name": "Sinusitis",
+    "symptoms": ["facial pain", "nasal congestion", "headache", "thick nasal mucus"],
+    "questions": [
+      "Do you have facial pressure or pain, especially around the nose and eyes?",
+      "Are you experiencing nasal congestion or thick mucus?",
+      "Do you feel tired or have a low-grade fever?",
+      "Is the pain worse when you lean forward?"
+    ],
+    "advice": "Use steam inhalation, stay hydrated, and avoid sudden temperature changes.",
+    "medicines": "Decongestants, Antibiotics (if bacterial), Pain relievers.",
+    "specialist": "ENT Specialist"
+  },
+  {
+  "name": "Food Poisoning",
+    "symptoms": ["nausea", "vomiting", "diarrhea", "abdominal cramps", "fever"],
+    "questions": [
+      "Did your symptoms start after eating outside or unfamiliar food?",
+      "Are you experiencing nausea, vomiting, or diarrhea?",
+      "Do you have abdominal pain or cramping?",
+      "Do you have a low or high fever?"
+    ],
+    "advice": "Drink ORS, avoid solid food until vomiting stops, and rest.",
+    "medicines": "ORS, Antiemetics (e.g., Domperidone), Antibiotics (if advised).",
+    "specialist": "General Physician"
+  },
+  {
+  "name": "Migraine",
+    "symptoms": ["one-sided severe headache", "sensitivity to light", "nausea", "aura", "throbbing pain"],
+    "questions": [
+      "Do you experience one-sided or throbbing headaches?",
+      "Do you feel nauseated or vomit during headaches?",
+      "Are you sensitive to light or sound?",
+      "Do you see flashes or patterns before the headache starts?"
+    ],
+    "advice": "Rest in a quiet dark room, avoid known triggers, maintain sleep schedule.",
+    "medicines": "Triptans, Pain relievers, Anti-nausea meds.",
+    "specialist": "Neurologist"
+  },
+  {
+  "name": "Skin Allergy",
+    "symptoms": ["itchy skin", "redness", "rashes", "swelling", "dry patches"],
+    "questions": [
+      "Do you have itchy or irritated skin?",
+      "Have you noticed any red rashes or bumps?",
+      "Is your skin swollen or dry in certain areas?",
+      "Have you used any new products or foods recently?"
+    ],
+    "advice": "Avoid allergens, keep skin moisturized, and wear loose cotton clothes.",
+    "medicines": "Antihistamines, Calamine lotion, Topical steroids (if severe).",
+    "specialist": "Dermatologist"
+  },
+  {
+  "name": "Arthritis",
+    "symptoms": ["joint pain", "stiffness", "swelling", "reduced movement", "fatigue"],
+    "questions": [
+      "Do you experience joint pain, especially in the morning?",
+      "Are your joints swollen or stiff?",
+      "Is it difficult to move certain joints fully?",
+      "Do you feel tired easily with physical activity?"
+    ],
+    "advice": "Do low-impact exercises, maintain healthy weight, and apply heat/cold packs.",
+    "medicines": "NSAIDs, DMARDs, Physiotherapy.",
+    "specialist": "Rheumatologist"
+  },
+  {
+  "name": "Anemia",
+    "symptoms": ["fatigue", "pale skin", "dizziness", "shortness of breath", "cold hands and feet"],
+    "questions": [
+      "Do you feel tired or weak most of the time?",
+      "Have you noticed paleness in your face or hands?",
+      "Do you feel dizzy when you stand or walk?",
+      "Are you experiencing shortness of breath or rapid heartbeat?"
+    ],
+    "advice": "Eat iron-rich foods like spinach, jaggery, and lentils; avoid tea with meals.",
+    "medicines": "Iron supplements, Folic acid, Vitamin B12 (if needed).",
+    "specialist": "Hematologist / General Physician"
+  },
+  {
+  "name": "Jaundice",
+    "symptoms": ["yellowing of eyes/skin", "dark urine", "pale stools", "fatigue", "abdominal pain"],
+    "questions": [
+      "Have your eyes or skin turned yellow?",
+      "Is your urine darker than usual?",
+      "Do you have pale or clay-colored stools?",
+      "Are you feeling weak or having pain in the upper right abdomen?"
+    ],
+    "advice": "Avoid fatty foods, take adequate rest, and stay hydrated.",
+    "medicines": "Liver-protecting agents (e.g., Liv-52), supportive care.",
+    "specialist": "Hepatologist / General Physician"
+  },
+  {
+  "name": "Eye Conjunctivitis (Pink Eye)",
+    "symptoms": ["red eyes", "itchy eyes", "watery discharge", "swelling", "light sensitivity"],
+    "questions": [
+      "Are your eyes red and watery?",
+      "Do you feel itching or irritation in your eyes?",
+      "Is there any sticky discharge, especially in the morning?",
+      "Do your eyes feel sensitive to bright light?"
+    ],
+    "advice": "Avoid touching eyes, wash hands frequently, and use clean towels.",
+    "medicines": "Lubricating drops, Antibiotic eye drops (e.g., Moxifloxacin).",
+    "specialist": "Ophthalmologist"
+  },
+  {
+  "name": "Dengue Fever",
+    "symptoms": ["high fever", "severe headache", "muscle pain", "rash", "low platelet count","high fever", "severe body pain", "headache"],
+    "questions": [
+      "Do you have high fever along with severe body pain?",
+      "Are you experiencing headaches behind the eyes?",
+      "Have you noticed skin rash or bleeding gums?",
+      "Has a recent test shown a drop in platelet count?"
+    ],
+    "advice": "Drink plenty of fluids,avoid painkillers like ibuprofen, take complete rest, and monitor platelet levels.",
+    "medicines": "Paracetamol (avoid aspirin/NSAIDs), IV fluids if necessary.",
+    "specialist": "General Physician / Infectious Disease Specialist"
+  },
+  {
+  "name": "Typhoid Fever",
+    "symptoms": ["high fever", "abdominal pain", "weakness", "loss of appetite", "constipation or diarrhea"],
+    "questions": [
+      "Are you experiencing persistent high fever for several days?",
+      "Do you feel extremely weak or tired?",
+      "Do you have abdominal pain or discomfort?",
+      "Have you noticed any change in bowel habits (constipation or diarrhea)?"
+    ],
+    "advice": "Eat soft, digestible food, avoid raw fruits/vegetables, and complete antibiotic course.",
+    "medicines": "Cefixime, Azithromycin, Paracetamol (as prescribed).",
+    "specialist": "General Physician"
+  },
+  {
+  "name": "Scabies",
+    "symptoms": ["intense itching", "rash", "burrow marks", "worse at night", "skin infection"],
+    "questions": [
+      "Are you experiencing severe itching that gets worse at night?",
+      "Do you have small red bumps or blisters on your skin?",
+      "Is the itching spreading to family members or close contacts?",
+      "Have you noticed thread-like burrow marks on wrists, waist, or fingers?"
+    ],
+    "advice": "Wash clothes and bedding in hot water, avoid skin contact with others.",
+    "medicines": "Permethrin cream, Oral ivermectin (if severe).",
+    "specialist": "Dermatologist"
+  }
+  
+]
