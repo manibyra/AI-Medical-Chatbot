@@ -12,7 +12,7 @@ This document outlines the process for contributing to the **AI Medical Diagnost
 - Click the **Fork** button on the top right of this repository.
 - Clone your fork:
   ```bash
-  git clone https://github.com/your-username/ai-medical-chatbot.git
+  https://github.com/manibyra/AI-Medical-Chatbot
 ````
 
 ### 2. Set Up the Project
