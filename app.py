@@ -1,194 +1,183 @@
-from flask import Flask, render_template, request, jsonify, session
-from chatbot.diagnosis import diagnose, evaluate_confirmed_conditions
+import streamlit as st
 from chatbot.data_loader import load_conditions
-from chatbot.logger import log_user_input
+from chatbot.symptom_extractor import extract_symptoms
+from chatbot.diagnosis import format_diagnosis, evaluate_confirmed_conditions, save_log
+from chatbot.translator import translate_text
+import os
+import random
+import time
 
-app = Flask(__name__)
-app.secret_key = 'supersecretkey'
+# Ensure logs directory exists
+os.makedirs("logs", exist_ok=True)
 
-@app.route('/')
-def index():
-    session.clear()
-    session['stage'] = 'ask_name'
-    return render_template('index.html')
+langs = {
+    "English": "en",
+    "हिन्दी (Hindi)": "hi",
+    "తెలుగు (Telugu)": "te",
+    "தமிழ் (Tamil)": "ta",
+    "ಕನ್ನಡ (Kannada)": "kn",
+    "বাংলা (Bengali)": "bn"
+}
 
-@app.route('/get_response', methods=['POST'])
-def get_response():
-    user_input = request.form['user_input'].strip()
+selected_language = st.selectbox("Choose your language:", list(langs.keys()))
+lang_code = langs[selected_language]
+st.session_state.lang = lang_code
 
-    if 'stage' not in session:
-        session['stage'] = 'ask_name'
+conditions = load_conditions()
+st.set_page_config(page_title="🧠 AI Medical Diagnosis Assistant", layout="centered")
+st.title(translate_text("🦠 AI Medical Diagnosis Assistant", src="en", dest=lang_code))
 
-    if session['stage'] == 'ask_name':
-        if len(user_input.split()) > 3:
-            return jsonify({"reply": "❗ That seems like symptoms. Please tell me just your name first 😊"})
+if "chat_started" not in st.session_state:
+    st.session_state.chat_started = False
+    st.session_state.user_data = {"name": "", "age": 0, "gender": ""}
 
-        session['user_name'] = user_input
-        session['stage'] = 'ask_symptom'
-        return jsonify({"reply": f"👋 Hello *{user_input}*! What symptoms are you experiencing today?"})
+if not st.session_state.chat_started:
+    with st.form("user_info_form"):
+        st.session_state.user_data["name"] = st.text_input(translate_text("Enter your name:", src="en", dest=lang_code))
+        st.session_state.user_data["age"] = st.number_input(translate_text("Enter your age:", src="en", dest=lang_code), min_value=1, max_value=120, step=1)
+        st.session_state.user_data["gender"] = st.selectbox(
+            translate_text("Select your gender:", src="en", dest=lang_code), ["Male", "Female", "Other"]
+        )
+        submitted = st.form_submit_button(translate_text("Start Chat", src="en", dest=lang_code))
 
-    if session['stage'] == 'ask_symptom':
-        result = diagnose(user_input)
-        session['qa_log'] = [] 
-
-        if 'error' in result:
-            return jsonify({"reply": result['error']})
-        
-
-        if 'symptoms' in result:
-            log_user_input({
-                "name": session.get('user_name', 'Unknown'),
-                "symptoms": result['symptoms']
-            })
-
-        session['questions'] = result.get('questions', [])
-        session['condition_map'] = result.get('map', {})
-        session['fallback_conditions'] = result.get('fallback_conditions', [])
-        session['fallback_stage'] = False
-        session['confirmed'] = {}
-        session['index'] = 0
-
-        if not session['questions']:
-            return jsonify({"reply": "😕 I couldn't find any questions based on your symptoms. Please try rephrasing or adding more."})
-
-        session['stage'] = 'followup'
-        return jsonify({"reply": f"❓ {session['questions'][0]}"})
-
-    if session['stage'] == 'followup':
-        answer = user_input.lower()
-        question_index = session.get('index', 0)
-        current_question = session['questions'][question_index]
-        condition_name = session['condition_map'].get(current_question)
-
-        if answer in ['yes', 'y']:
-            session['confirmed'][condition_name] = session['confirmed'].get(condition_name, 0) + 1
-
-        session['index'] += 1
-
-        if session['index'] < len(session['questions']):
-            next_question = session['questions'][session['index']]
-            return jsonify({"reply": f"❓ {next_question}"})
+    if submitted:
+        if st.session_state.user_data["name"] and st.session_state.user_data["age"] and st.session_state.user_data["gender"]:
+            st.session_state.chat_started = True
+            st.rerun()
         else:
-            confirmed = session.get('confirmed', {})
-            all_conditions = load_conditions()
-            response_text = evaluate_confirmed_conditions(confirmed, all_conditions)
-            session.clear()
-            return jsonify({"reply": response_text})
+            st.warning(translate_text("⚠️ Please fill in all fields to proceed.", src="en", dest=lang_code))
 
-    return jsonify({"reply": "❓ I'm not sure what you mean. Please try again."})
+if st.session_state.chat_started:
+    if "qa_log" not in st.session_state:
+        st.session_state.qa_log = []
+    if "chat" not in st.session_state:
+        st.session_state.chat = []
+        st.session_state.phase = "symptom_input"
+        st.session_state.questions = []
+        st.session_state.condition_map = {}
+        st.session_state.conditions = []
+        st.session_state.confirmed = {}
+        st.session_state.negatives = {}
+        st.session_state.follow_up = 0
 
-@app.route('/followup', methods=['POST'])
-def followup():
-    user_input = request.form['user_input'].strip().lower()
+    for entry in st.session_state.chat:
+        with st.chat_message(entry["role"]):
+            st.markdown(entry["message"])
 
-    questions = session.get('questions', [])
-    index = session.get('index', 0)
-    confirmed = session.get('confirmed', {})
-    condition_map = session.get('condition_map', {})
-    user_name = session.get('user_name', 'Unknown')
-    negatives = session.get('negatives', {})
-    filtered_conditions = session.get('filtered_conditions', [])
+    user_input = st.chat_input(translate_text("Enter your symptoms", src="en", dest=lang_code))
+    if user_input:
+        translated_input = translate_text(user_input, src=lang_code, dest='en')
 
-    if index >= len(questions):
-        session.clear()
-        return jsonify({"reply": "❗ Session expired or completed. Please restart."})
+        with st.chat_message("user"):
+            st.markdown(user_input)
+        st.session_state.chat.append({"role": "user", "message": user_input})
 
-    current_question = questions[index]
-    related_condition = condition_map.get(current_question)
+        if st.session_state.phase == "symptom_input":
+            symptoms = extract_symptoms(translated_input)
+            if not symptoms:
+                reply = "😕 I couldn't understand your symptoms. Please try again."
+            else:
+                st.session_state.symptoms = symptoms
+                all_match = [cond for cond in conditions if all(sym in [s.lower() for s in cond.get("symptoms", [])] for sym in symptoms)]
+                matches = all_match or [cond for cond in conditions if any(sym in [s.lower() for s in cond.get("symptoms", [])] for sym in symptoms)]
 
-    # Log the user response
-    log_user_input({
-        "name": user_name,
-        "question": current_question,
-        "answer": user_input
-    })
-    session.setdefault("qa_log", []).append({
-        "question": current_question,
-        "user_answer": user_input
-    })
+                if not matches:
+                    reply = "😕 No relevant conditions found for your symptoms."
+                else:
+                    question_set = []
+                    condition_map = {}
+                    for cond in matches:
+                        for q in cond.get("questions", []):
+                            if q not in question_set:
+                                question_set.append(q)
+                                condition_map[q] = cond["name"]
 
-    # Track responses
-    if related_condition:
-        if user_input in ['yes', 'y', 'yeah', 'yep']:
-            confirmed[related_condition] = confirmed.get(related_condition, 0) + 1
-        elif user_input in ['no', 'n', 'nope', 'nah']:
-            negatives[related_condition] = negatives.get(related_condition, 0) + 1
+                    if not question_set:
+                        reply = "😕 No questions found for matched conditions."
+                    else:
+                        random.shuffle(question_set)
+                        st.session_state.questions = question_set
+                        st.session_state.condition_map = condition_map
+                        st.session_state.conditions = matches
+                        st.session_state.phase = "followup"
+                        st.session_state.follow_up = 0
+                        st.session_state.confirmed = {}
+                        st.session_state.negatives = {}
+                        reply = f"🧐 {question_set[0]} (yes/no)"
 
-    session['confirmed'] = confirmed
-    session['negatives'] = negatives   
+            translated_msg = translate_text(reply, src='en', dest=lang_code)
+            st.chat_message("assistant").markdown(translated_msg)
+            st.session_state.chat.append({"role": "assistant", "message": translated_msg})
+            st.stop()
 
-    index += 1
-    session['index'] = index
+        elif st.session_state.phase == "followup":
+            answer = user_input.strip().lower()
+            yes_no_map = {
+                "yes": "yes", "no": "no",
+                "అవును": "yes", "లేదు": "no",
+                "हाँ": "yes", "नहीं": "no",
+                "हां": "yes", "नहीं": "no",
+                "ஆம்": "yes", "இல்லை": "no",
+                "ಹೌದು": "yes", "ಇಲ್ಲ": "no",
+                "হ্যাঁ": "yes", "না": "no"
+            }
+            mapped_answer = yes_no_map.get(answer)
 
-    # Move to next valid question (based on filtered_conditions)
-    while index < len(questions):
-        next_question = questions[index]
-        next_condition = condition_map.get(next_question)
+            if mapped_answer not in ["yes", "no"]:
+                msg = "❗ Please answer with 'yes' or 'no'."
+                translated_msg = translate_text(msg, src='en', dest=lang_code)
+                st.chat_message("assistant").markdown(translated_msg)
+                st.session_state.chat.append({"role": "assistant", "message": translated_msg})
+                st.stop()
 
-        # ✅ Skip if 2 negative responses already given
-        if negatives.get(next_condition, 0) >= 2:
-            index += 1
-            continue
+            current_question = st.session_state.questions[st.session_state.follow_up]
+            condition_name = st.session_state.condition_map.get(current_question, "")
+            st.session_state.qa_log.append({"question": current_question, "answer": mapped_answer})
 
-        if not filtered_conditions or next_condition in filtered_conditions:
-            session['index'] = index
+            if mapped_answer == "yes":
+                st.session_state.confirmed[condition_name] = st.session_state.confirmed.get(condition_name, 0) + 1
+            else:
+                st.session_state.negatives[condition_name] = st.session_state.negatives.get(condition_name, 0) + 1
 
-            # 🔍 Check if any condition has 2 or 3+ confirmations
-            for condition, count in confirmed.items():
-                if count >= 3:
-                    return jsonify({"reply": f"🧠 *Suspected Condition: {condition}*\n❓ {next_question}"})
-                elif count == 2:
-                    return jsonify({"reply": f"🩺 *You may have: {condition}*\n❓ {next_question}"})
+            if st.session_state.confirmed.get(condition_name, 0) >= 3:
+                condition = next((c for c in st.session_state.conditions if c["name"] == condition_name), None)
+                if condition:
+                    diagnosis = format_diagnosis(condition)
+                    translated_diagnosis = translate_text(diagnosis, src='en', dest=lang_code)
+                    st.chat_message("assistant").markdown(translated_diagnosis)
+                    st.session_state.chat.append({"role": "assistant", "message": translated_diagnosis})
+                    st.session_state.phase = "done"
+                    try:
+                        save_log(diagnosis)
+                    except Exception as e:
+                        st.warning(f"Log save failed: {e}")
+                    st.stop()
 
-            return jsonify({"reply": f"❓ {next_question}"})
+            while True:
+                st.session_state.follow_up += 1
+                if st.session_state.follow_up >= len(st.session_state.questions):
+                    break
+                next_q = st.session_state.questions[st.session_state.follow_up]
+                next_cond = st.session_state.condition_map.get(next_q, "")
+                if st.session_state.negatives.get(next_cond, 0) < 2:
+                    break
 
-        index += 1
-
-    # If all questions are done, evaluate
-    all_conditions = load_conditions()
-    response_text = evaluate_confirmed_conditions(confirmed, all_conditions)
-    entry = {
-        "name": session.get("user_name", "Unknown"),
-        "symptoms": session.get("symptoms", []),
-        "qa": session.get("qa_log", []),
-        "diagnosis": response_text
-    }
-    log_user_input(entry)
-    
-    session.clear()
-    return jsonify({"reply": response_text})
-
-@app.route("/answer_followup", methods=["POST"])
-def answer_followup():
-    user_answer = request.form["user_input"].strip().lower()
-    question_idx = session.get("current_question_index", 0)
-    questions = session.get("followup_questions", [])
-    condition_map = session.get("condition_map", {})
-    answers = session.get("followup_answers", {})
-
-    if question_idx >= len(questions):
-        return jsonify({"reply": "✅ Follow-up complete. Please wait for diagnosis..."})
-
-    current_question = questions[question_idx]
-    condition = condition_map.get(current_question)
-
-    if condition:
-        if condition not in answers:
-            answers[condition] = 0
-        if user_answer in ["yes", "y", "yeah", "yep"]:
-            answers[condition] += 1
-
-    session["followup_answers"] = answers
-    session["current_question_index"] = question_idx + 1
-
-    if question_idx + 1 < len(questions):
-        next_question = questions[question_idx + 1]
-        return jsonify({"reply": f"🤔 {next_question}"})
-    else:
-        all_conditions = load_conditions()
-        response_text = evaluate_confirmed_conditions(answers, all_conditions)
-        session.clear()
-        return jsonify({"reply": response_text})
-
-if __name__ == '__main__':
-    app.run(debug=True)
+            if st.session_state.follow_up < len(st.session_state.questions):
+                next_q = st.session_state.questions[st.session_state.follow_up]
+                bot_msg = f"🧐 {next_q} (yes/no)"
+                translated_bot_msg = translate_text(bot_msg, src='en', dest=lang_code)
+                st.chat_message("assistant").markdown(translated_bot_msg)
+                st.session_state.chat.append({"role": "assistant", "message": translated_bot_msg})
+            else:
+                diagnosis_text = evaluate_confirmed_conditions(
+                    st.session_state.confirmed, st.session_state.conditions
+                )
+                translated_diagnosis = translate_text(diagnosis_text, src='en', dest=lang_code)
+                st.chat_message("assistant").markdown(translated_diagnosis)
+                st.session_state.chat.append({"role": "assistant", "message": translated_diagnosis})
+                st.session_state.phase = "done"
+                try:
+                    save_log(diagnosis_text)
+                except Exception as e:
+                    st.warning(f"Log save failed: {e}")
+                st.stop()
