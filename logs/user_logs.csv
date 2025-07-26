@@ -1,0 +1,124 @@
+Timestamp,Name,Age,Gender,Symptoms,Q&A Log,Diagnosis
+2025-07-24 20:26:05,mani,21,Male,"fever, cold",Are you experiencing a sore throat? = yes; Have you lost your sense of taste or smell? = yes; Do you have a runny or blocked nose? = yes,"✅ Based on your answers, you might have:
+
+**Common Cold and Cough**  
+📋 Rest, drink warm fluids, use saline nasal spray, and avoid cold air.  
+💊 **Medicines:** Paracetamol, Cough Syrup, Antihistamines (e.g., Cetirizine).  
+👨‍⚕️ **Doctor:** General Physician
+
+📝 Please consult a healthcare professional for confirmation."
+2025-07-24 20:28:20,raja ,1,Male,stiffness,"Are your joints swollen or stiff? = yes; Is it difficult to move certain joints fully? = yes; Is the pain located in your lower or upper back? = yes; Do you experience joint pain, especially in the morning? = yes","✅ Based on your answers, you might have:
+
+**Arthritis**  
+📋 Do low-impact exercises, maintain healthy weight, and apply heat/cold packs.  
+💊 **Medicines:** NSAIDs, DMARDs, Physiotherapy.  
+👨‍⚕️ **Doctor:** Rheumatologist
+
+📝 Please consult a healthcare professional for confirmation."
+2025-07-24 20:30:15,kanna,50,Male,fever,"Are you experiencing nausea, vomiting, or diarrhea? = yes; Are you experiencing a sore throat? = yes; Are you having trouble hearing properly? = yes; Do you have a fever? = yes; Do you have general body aches or weakness? = yes; Are you sneezing frequently? = yes; Do you have a persistent dry cough? = yes; Are your tonsils swollen or red? = yes; Do you feel chills or shivering? = yes; Are you feeling breathless or having difficulty breathing? = yes; Do you have abdominal pain or cramping? = yes; Do you see any white patches on your throat? = yes","✅ Based on your answers, you might have:
+
+**Throat Infection**  
+📋 Gargle with salt water, avoid spicy foods, stay hydrated.  
+💊 **Medicines:** Paracetamol, Lozenges, Antibiotics (if bacterial).  
+👨‍⚕️ **Doctor:** ENT Specialist
+
+📝 Please consult a healthcare professional for confirmation."
+2025-07-24 20:50:59,rk,1,Male,"cold, fever",Do you have a mild fever? = yes; Are you sneezing frequently? = yes; Are you experiencing a sore throat? = yes,"✅ Based on your answers, you might have:
+
+**Common Cold and Cough**  
+📋 Rest, drink warm fluids, use saline nasal spray, and avoid cold air.  
+💊 **Medicines:** Paracetamol, Cough Syrup, Antihistamines (e.g., Cetirizine).  
+👨‍⚕️ **Doctor:** General Physician
+
+📝 Please consult a healthcare professional for confirmation."
+2025-07-24 23:45:13,raja ,4,Male,"stomach pain, nausea",Are you feeling a burning sensation in the stomach? = yes; Do you often burp or feel acidic? = yes; Are you experiencing nausea or vomiting? = yes,"✅ Based on your answers, you might have:
+
+**Gastritis**  
+📋 Eat bland food, avoid spicy/oily food, don’t lie down after eating.  
+💊 **Medicines:** Antacids, Pantoprazole, Domperidone.  
+👨‍⚕️ **Doctor:** Gastroenterologist
+
+📝 Please consult a healthcare professional for confirmation."
+2025-07-24 23:47:00,kumar,18,Male,"nausea, stomach pain",Are you experiencing nausea or vomiting? = yes; Do you feel bloated after meals? = yes; Do you often burp or feel acidic? = no; Are you feeling a burning sensation in the stomach? = yes,"✅ Based on your answers, you might have:
+
+**Gastritis**  
+📋 Eat bland food, avoid spicy/oily food, don’t lie down after eating.  
+💊 **Medicines:** Antacids, Pantoprazole, Domperidone.  
+👨‍⚕️ **Doctor:** Gastroenterologist
+
+📝 Please consult a healthcare professional for confirmation."
+2025-07-24 23:47:36,Raghu,1,Male,pain while swallowing,Is it painful to swallow? = yes; Do you have a fever? = yes; Do you see any white patches on your throat? = yes,"✅ Based on your answers, you might have:
+
+**Throat Infection**  
+📋 Gargle with salt water, avoid spicy foods, stay hydrated.  
+💊 **Medicines:** Paracetamol, Lozenges, Antibiotics (if bacterial).  
+👨‍⚕️ **Doctor:** ENT Specialist
+
+📝 Please consult a healthcare professional for confirmation."
+2025-07-26 12:27:58,నమస్తే,15,Male,fever,Are you sneezing frequently? = yes; Do you have a fever? = yes; Are your tonsils swollen or red? = yes; Is it painful to swallow? = yes,"✅ Based on your answers, you might have:
+
+**Throat Infection**  
+📋 Gargle with salt water, avoid spicy foods, stay hydrated.  
+💊 **Medicines:** Paracetamol, Lozenges, Antibiotics (if bacterial).  
+👨‍⚕️ **Doctor:** ENT Specialist
+
+📝 Please consult a healthcare professional for confirmation."
+2025-07-26 12:32:28,నమస్తే,18,Male,"fever, cold",Do you have a mild fever? = yes; Have you lost your sense of taste or smell? = yes; Are you experiencing a sore throat? = yes,"✅ Based on your answers, you might have:
+
+**Common Cold and Cough**  
+📋 Rest, drink warm fluids, use saline nasal spray, and avoid cold air.  
+💊 **Medicines:** Paracetamol, Cough Syrup, Antihistamines (e.g., Cetirizine).  
+👨‍⚕️ **Doctor:** General Physician
+
+📝 Please consult a healthcare professional for confirmation."
+2025-07-26 12:44:33,kan,15,Male,"fever, cold",Do you have a mild fever? = yes; Are you experiencing a sore throat? = yes; Have you lost your sense of taste or smell? = yes,"✅ Based on your answers, you might have:
+
+**Common Cold and Cough**  
+📋 Rest, drink warm fluids, use saline nasal spray, and avoid cold air.  
+💊 **Medicines:** Paracetamol, Cough Syrup, Antihistamines (e.g., Cetirizine).  
+👨‍⚕️ **Doctor:** General Physician
+
+📝 Please consult a healthcare professional for confirmation."
+2025-07-26 12:47:04,mani,1,Male,"fever, cold",Are you sneezing frequently? = no; Have you lost your sense of taste or smell? = yes; Do you have a mild fever? = yes; Do you have a runny or blocked nose? = yes,"✅ Based on your answers, you might have:
+
+**Common Cold and Cough**  
+📋 Rest, drink warm fluids, use saline nasal spray, and avoid cold air.  
+💊 **Medicines:** Paracetamol, Cough Syrup, Antihistamines (e.g., Cetirizine).  
+👨‍⚕️ **Doctor:** General Physician
+
+📝 Please consult a healthcare professional for confirmation."
+2025-07-26 12:58:36,sasi,1,Male,"fever, cold",Are you experiencing a sore throat? = no; Are you sneezing frequently? = no,⚠️ No clear diagnosis found. Please consult a doctor.
+2025-07-26 13:00:23,sosi,1,Male,"fever, cold",Do you have a mild fever? = yes; Do you have a runny or blocked nose? = yes; Are you experiencing a sore throat? = yes,"✅ Based on your answers, you might have:
+
+**Common Cold and Cough**  
+📋 Rest, drink warm fluids, use saline nasal spray, and avoid cold air.  
+💊 **Medicines:** Paracetamol, Cough Syrup, Antihistamines (e.g., Cetirizine).  
+👨‍⚕️ **Doctor:** General Physician
+
+📝 Please consult a healthcare professional for confirmation."
+2025-07-26 13:02:19,kumari,18,Female,"fever, cold",Have you lost your sense of taste or smell? = yes; Do you have a mild fever? = yes; Do you have a runny or blocked nose? = no; Are you experiencing a sore throat? = yes,"✅ Based on your answers, you might have:
+
+**Common Cold and Cough**  
+📋 Rest, drink warm fluids, use saline nasal spray, and avoid cold air.  
+💊 **Medicines:** Paracetamol, Cough Syrup, Antihistamines (e.g., Cetirizine).  
+👨‍⚕️ **Doctor:** General Physician
+
+📝 Please consult a healthcare professional for confirmation."
+2025-07-26 13:04:44,kannari,18,Female,"fever, cold",Have you lost your sense of taste or smell? = yes; Are you sneezing frequently? = no; Do you have a mild fever? = no,⚠️ No clear diagnosis found. Please consult a doctor.
+2025-07-26 13:06:37,kannari,19,Female,"fever, cold",Do you have a mild fever? = yes; Do you have a runny or blocked nose? = yes; Have you lost your sense of taste or smell? = yes,"✅ Based on your answers, you might have:
+
+**Common Cold and Cough**  
+📋 Rest, drink warm fluids, use saline nasal spray, and avoid cold air.  
+💊 **Medicines:** Paracetamol, Cough Syrup, Antihistamines (e.g., Cetirizine).  
+👨‍⚕️ **Doctor:** General Physician
+
+📝 Please consult a healthcare professional for confirmation."
+2025-07-26 13:09:27,keru,1,Male,"fever, cold",Are you experiencing a sore throat? = no; Do you have a mild fever? = no,⚠️ No clear diagnosis found. Please consult a doctor.
+2025-07-26 13:11:11,kanada ,19,Male,"fever, cold",Are you experiencing a sore throat? = yes; Are you sneezing frequently? = yes; Have you lost your sense of taste or smell? = yes,"✅ Based on your answers, you might have:
+
+**Common Cold and Cough**  
+📋 Rest, drink warm fluids, use saline nasal spray, and avoid cold air.  
+💊 **Medicines:** Paracetamol, Cough Syrup, Antihistamines (e.g., Cetirizine).  
+👨‍⚕️ **Doctor:** General Physician
+
+📝 Please consult a healthcare professional for confirmation."
